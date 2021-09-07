@@ -21,7 +21,7 @@ export default class GeolocationController {
       if (error instanceof ErrorResponse) return res.status(error.statusCode).json(new ApiResponse(error.message));
 
       Logger.error(error);
-      return res.status(500).json(new ApiResponse(MESSAGES.INTERNAL_ERRO));
+      return res.status(500).json(new ApiResponse(MESSAGES.INTERNAL_ERROR));
     }
   }
 }

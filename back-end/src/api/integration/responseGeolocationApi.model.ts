@@ -1,21 +1,41 @@
-type TimeZone = {
-  name?: string;
-  offset?: number;
-  currentTime?: Date;
-};
-
-export default class ResponseGeolocationAPI {
-  country?: string;
-  city?: string;
+class Geo {
   ip?: string;
-  timeZone?: TimeZone;
+  city?: string;
+  country?: string;
 
   constructor(data: any) {
     if (data) {
-      this.ip = data.ip;
+      this.ip = data['ip'];
       this.country = data['country_name'];
-      this.city = data.city;
-      this.timeZone = data['country_name'] as TimeZone;
+      this.city = data['city'];
     }
+  }
+}
+
+export default class ResponseGeolocationAPI {
+  dateTime?: Date;
+  timezoneOffset?: number;
+  timezone?: string;
+  private geo?: Geo;
+
+  constructor(data: any) {
+    if (data) {
+      this.dateTime = data['date_time'];
+      this.timezone = data['timezone'];
+      this.timezoneOffset = data['timezone_offset'];
+      this.geo = new Geo(data['geo']);
+    }
+  }
+
+  public get getContry(): string | undefined {
+    return this.geo ? this.geo.country : undefined;
+  }
+
+  public get getCity(): string | undefined {
+    return this.geo ? this.geo.city : undefined;
+  }
+
+  public get getIp(): string | undefined {
+    return this.geo ? this.geo.ip : undefined;
   }
 }

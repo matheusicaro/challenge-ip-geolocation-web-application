@@ -1,3 +1,4 @@
 import ErrorResponse, { HttpStatusCode } from './errorResponse.exception';
+import GenericError from './genericError';
 
-export { ErrorResponse, HttpStatusCode };
+export { ErrorResponse, HttpStatusCode, GenericError };
