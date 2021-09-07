@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Logger } from '../config/logger';
+import { Logger } from '../../config/logger';
 import { MESSAGES } from '../constants';
 import { ErrorResponse } from '../exceptions';
 import { ApiResponse, IPGeolocation } from '../models';

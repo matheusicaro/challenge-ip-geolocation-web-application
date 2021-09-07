@@ -1,15 +1,15 @@
 // @ts-nocheck
 
 import { mockRequest, mockResponse } from './util';
-import controller from '../../api/controllers/geolocation.controller';
-import { IPGeolocation, Geolocation } from '../../api/models';
+import controller from '../../../api/controllers/geolocation.controller';
+import { IPGeolocation, Geolocation } from '../../../api/models';
 
-jest.mock('../../config/logger');
-import { Logger } from '../../config/logger';
+jest.mock('../../../config/logger');
+import { Logger } from '../../../config/logger';
 
-jest.mock('../../api/services/geolocation.service');
-import Service from '../../api/services/geolocation.service';
-import { ErrorResponse, HttpStatusCode } from '../../api/exceptions';
+jest.mock('../../../api/services/geolocation.service');
+import Service from '../../../api/services/geolocation.service';
+import { ErrorResponse, HttpStatusCode } from '../../../api/exceptions';
 
 describe("Check method 'getIPGeolocation'", () => {
   beforeEach(() => {

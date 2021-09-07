@@ -66,7 +66,7 @@ describe('logger.ts', () => {
     const createLoggerCaptured = jest.spyOn(winston, 'createLogger');
     const configCaptured = createLoggerCaptured.mock.calls[0][0];
 
-    expect(configCaptured).not.toBe(undefined);
+    expect(configCaptured).not.toEqual(undefined);
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore: Object is possibly 'null'.
     expect(configCaptured.level).toEqual(expectedConfig.level);

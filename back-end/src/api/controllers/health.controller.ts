@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Logger } from '../config/logger';
+import { Logger } from '../../config/logger';
 import { Health } from '../models';
 
 export default class AuthController {

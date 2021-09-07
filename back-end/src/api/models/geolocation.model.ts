@@ -1,5 +1,3 @@
-import { JsonProperty } from 'json-typescript-mapper';
-
 export default class Geolocation {
   country: string;
   city: string;

@@ -1,5 +1,5 @@
 export default class ApiResponse {
-  message: string;
+  private message: string;
 
   constructor(message: string) {
     this.message = message;
