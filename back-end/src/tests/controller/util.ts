@@ -9,9 +9,9 @@ type Res = {
   json?: any;
 };
 
-export const mockRequest = () => {
+export const mockRequest = (body?: any) => {
   const req: Req = {};
-  req.body = jest.fn().mockReturnValue(req);
+  req.body = body || jest.fn().mockReturnValue(req);
   req.params = jest.fn().mockReturnValue(req);
   return req;
 };
