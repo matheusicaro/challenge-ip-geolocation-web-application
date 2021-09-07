@@ -28,16 +28,29 @@
       }
     },
 
-    "/ips/geolocation": {
+    "/geolocation": {
       "post": {
         "tags": ["geolocation"],
         "summary": "Get geolocation from the IPs",
         "description": "check the geolocation of an origin IP and a destiny IP.",
         "operationId": "getIpGeolocation",
         "produces": ["application/json"],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Object required to obtain the geolocation of informed IPs",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IPGeolocationRequestBody"
+            }
+          }
+        ],
         "responses": {
-          "200": { "description": "successful operation", "schema": { "$ref": "#/definitions/IPGeolocation" } }
+          "200": { "description": "successful operation", "schema": { "$ref": "#/definitions/IPGeolocation" } },
+          "400": { "description": "invalid parameters", "schema": { "$ref": "#/definitions/ApiResponse" } },
+          "404": { "description": "not found data", "schema": { "$ref": "#/definitions/ApiResponse" } },
+          "500": { "description": "internal error", "schema": { "$ref": "#/definitions/ApiResponse" } }
         }
       }
     }
@@ -47,8 +60,15 @@
     "HealthStatus": {
       "type": "object",
       "properties": {
-        "time": { "type": "string", "format": "date-time", "example": "2021-01-30T08:30:00Z" },
-        "status": { "type": "string", "enum": ["ONLINE", "FAILED"] }
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2021-01-30T08:30:00Z"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ONLINE", "FAILED"]
+        }
       }
     },
     "IPGeolocation": {
@@ -69,11 +89,11 @@
               "type": "string",
               "example": "187.00.1.110"
             },
-            "local_time": {
+            "localTime": {
               "type": "string",
               "example": "America/Sao_Paulo (GTM-3)"
             },
-            "time_zone": {
+            "timeZone": {
               "type": "string",
               "format": "date-time",
               "example": "2021-07-09T10:07:00Z"
@@ -95,16 +115,38 @@
               "type": "string",
               "example": "23.83.223.255"
             },
-            "local_time": {
+            "localTime": {
               "type": "string",
               "example": "America/Sao_Paulo (GTM-8)"
             },
-            "time_zone": {
+            "timeZone": {
               "type": "string",
               "format": "date-time",
               "example": "2021-09-70T06:05:00Z"
             }
           }
+        }
+      }
+    },
+    "IPGeolocationRequestBody": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "type": "string",
+          "example": "187.00.1.110"
+        },
+        "destiny": {
+          "type": "string",
+          "example": "23.83.223.255"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "message for error description or detailed API response"
         }
       }
     }
