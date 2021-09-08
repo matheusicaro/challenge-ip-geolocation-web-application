@@ -15,9 +15,7 @@ export type State = {
   readonly error: boolean;
 };
 
-export type Payload = {
-  ip: string;
-};
+export type Payload = string;
 
 export interface Action extends AnyAction {
   payload: Payload;
