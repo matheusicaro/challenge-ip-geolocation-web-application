@@ -133,7 +133,7 @@
       "properties": {
         "origin": {
           "type": "string",
-          "example": "187.00.1.110"
+          "example": "2.16.15.255"
         },
         "destiny": {
           "type": "string",

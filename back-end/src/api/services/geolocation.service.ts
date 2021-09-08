@@ -5,7 +5,18 @@ import GeolocationApi from '../integration/geolocationApi.integration';
 import ResponseGeolocationAPI from '../integration/responseGeolocationApi.model';
 import { Geolocation, IPGeolocation } from '../models';
 
+/**
+ * Class intended to return geolocation features
+ *
+ */
 export default class GeolocationService {
+  /**
+   * Method intended to return IPGeolocation of IP of informed origin and destination
+   *
+   * @param  {string} originIp: origin IP
+   * @param  {string} destinyIp: destiny IP
+   * @returns IPGeolocation: geolocation of requested informed parameters
+   */
   public static async getIPGeolocation(originIp: string, destinyIp: string): Promise<IPGeolocation> {
     try {
       const originData = await this.getGeolocationResponse(originIp);
@@ -24,6 +35,13 @@ export default class GeolocationService {
     }
   }
 
+  /**
+   *
+   * Targeted method to get response from external geolocation api
+   *
+   * @param  {string} ip:
+   * @returns Promise<ResponseGeolocationAPI>: external API response for informed IP
+   */
   private static async getGeolocationResponse(ip: string): Promise<ResponseGeolocationAPI> {
     try {
       return await GeolocationApi.getGeolocation(ip);
@@ -33,6 +51,13 @@ export default class GeolocationService {
     }
   }
 
+  /**
+   *
+   * Method intended to abstract validation of the response and its attributes obtained from the external API
+   *
+   * @param  {ResponseGeolocationAPI} response: external API response.
+   * @returns boolean
+   */
   private static wasNotFoundGeolocation(response: ResponseGeolocationAPI): boolean {
     const invalidDates = (): boolean => !response.dateTime || !response.timezoneOffset || !response.timezone;
     const invalidGeo = (): boolean => !response.getIp || !response.getCity || !response.getContry;
@@ -40,6 +65,13 @@ export default class GeolocationService {
     return !response || invalidDates() || invalidGeo();
   }
 
+  /**
+   *
+   * Method intended for the construction of the object for response data from the external API data transfer object to the informed ip.
+   *
+   * @param  {ResponseGeolocationAPI} response: external API response.
+   * @returns Geolocation: External API Response Object DTO
+   */
   private static buildGeolocation(response: ResponseGeolocationAPI): Geolocation {
     const timezone = `${response.timezone} (GTM${response.timezoneOffset})`;
 

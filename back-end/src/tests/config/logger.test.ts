@@ -26,6 +26,9 @@ jest.mock('winston', () => {
   };
 });
 
+jest.mock('fs');
+import fs from 'fs';
+
 import * as winston from 'winston';
 import { Logger } from '../../config/logger';
 
@@ -70,5 +73,31 @@ describe('logger.ts', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore: Object is possibly 'null'.
     expect(configCaptured.level).toEqual(expectedConfig.level);
+  });
+
+  test('Should return correct config input when createLogger is called', async () => {
+    const expectedConfig = {
+      level: 'info'
+    };
+
+    Logger.info('log message');
+
+    const createLoggerCaptured = jest.spyOn(winston, 'createLogger');
+    const configCaptured = createLoggerCaptured.mock.calls[0][0];
+
+    expect(configCaptured).not.toEqual(undefined);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore: Object is possibly 'null'.
+    expect(configCaptured.level).toEqual(expectedConfig.level);
+  });
+
+  test('Should build file if it not exist', async () => {
+    fs.existsSync = jest.fn().mockImplementation(() => {
+      return false;
+    });
+
+    Logger.info('log message');
+
+    expect(fs.mkdirSync).toHaveBeenCalled();
   });
 });
