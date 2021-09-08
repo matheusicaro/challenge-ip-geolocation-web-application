@@ -1,0 +1,155 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server for initiating a Rest API using Node.js with Express and Typescript.",
+    "version": "1.0.0",
+    "title": "typescript-starter",
+    "termsOfService": "https://petstore.swagger.io/",
+    "contact": { "email": "contact@matheusicaro.com" },
+    "license": { "name": "Apache 2.0", "url": "http://www.apache.org/licenses/LICENSE-2.0.html" }
+  },
+  "host": "*",
+  "basePath": "/api/v1",
+  "tags": [],
+  "schemes": ["https", "http"],
+
+  "paths": {
+    "/helth": {
+      "get": {
+        "tags": ["helth"],
+        "summary": "check the Api status",
+        "description": "",
+        "operationId": "getHealth",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": { "status": "ONLINE", "schema": { "$ref": "#/definitions/HealthStatus" } }
+        }
+      }
+    },
+
+    "/geolocation": {
+      "post": {
+        "tags": ["geolocation"],
+        "summary": "Get geolocation from the IPs",
+        "description": "check the geolocation of an origin IP and a destiny IP.",
+        "operationId": "getIpGeolocation",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Object required to obtain the geolocation of informed IPs",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IPGeolocationRequestBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "successful operation", "schema": { "$ref": "#/definitions/IPGeolocation" } },
+          "400": { "description": "invalid parameters", "schema": { "$ref": "#/definitions/ApiResponse" } },
+          "404": { "description": "not found data", "schema": { "$ref": "#/definitions/ApiResponse" } },
+          "500": { "description": "internal error", "schema": { "$ref": "#/definitions/ApiResponse" } }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "HealthStatus": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2021-01-30T08:30:00Z"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ONLINE", "FAILED"]
+        }
+      }
+    },
+    "IPGeolocation": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "example": "Brazil"
+            },
+            "city": {
+              "type": "string",
+              "example": "Sao Paulo"
+            },
+            "ip": {
+              "type": "string",
+              "example": "187.00.1.110"
+            },
+            "localTime": {
+              "type": "string",
+              "example": "America/Sao_Paulo (GTM-3)"
+            },
+            "timeZone": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2021-07-09T10:07:00Z"
+            }
+          }
+        },
+        "destiny": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "example": "Canada"
+            },
+            "city": {
+              "type": "string",
+              "example": "Vancouver"
+            },
+            "ip": {
+              "type": "string",
+              "example": "23.83.223.255"
+            },
+            "localTime": {
+              "type": "string",
+              "example": "America/Sao_Paulo (GTM-8)"
+            },
+            "timeZone": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2021-09-70T06:05:00Z"
+            }
+          }
+        }
+      }
+    },
+    "IPGeolocationRequestBody": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "type": "string",
+          "example": "2.16.15.255"
+        },
+        "destiny": {
+          "type": "string",
+          "example": "23.83.223.255"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "message for error description or detailed API response"
+        }
+      }
+    }
+  },
+  "externalDocs": { "description": "Find out more about Swagger", "url": "http://swagger.io" }
+}
