@@ -12,7 +12,7 @@ import { Logger } from '../../../config/logger';
 
 import GeolocationAPI from '../../../api/integration/geolocationApi.integration';
 import { Geolocation, IPGeolocation } from '../../../api/models';
-import { ErrorResponse, HttpStatusCode } from '../../../api/exceptions';
+import { ErrorResponse, GenericError, HttpStatusCode } from '../../../api/exceptions';
 
 describe("Check method 'getIPGeolocation'", () => {
   let responseGeolocationAPI: ResponseGeolocationAPI;
@@ -84,6 +84,27 @@ describe("Check method 'getIPGeolocation'", () => {
       } catch (error) {
         expect(error).toEqual(expected);
       }
+    }
+  });
+
+  test('Should return exception expected if any mistakes happen', async () => {
+    const error = new Error();
+    const expected = new GenericError(error);
+
+    Logger.error = jest.fn().mockImplementation(() => {
+      throw error;
+    });
+
+    GeolocationAPI.getGeolocation = jest.fn().mockImplementation(() => {
+      return new Promise((resolve, reject) => {
+        reject();
+      });
+    });
+
+    try {
+      await Service.getIPGeolocation('origin_ip', 'destiny_ip');
+    } catch (err) {
+      expect(err).toEqual(error);
     }
   });
 });

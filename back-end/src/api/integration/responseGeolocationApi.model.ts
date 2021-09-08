@@ -13,14 +13,14 @@ class Geo {
 }
 
 export default class ResponseGeolocationAPI {
-  dateTime?: Date;
+  dateTime?: string;
   timezoneOffset?: number;
   timezone?: string;
   private geo?: Geo;
 
   constructor(data: any) {
     if (data) {
-      this.dateTime = data['date_time'];
+      this.dateTime = data['date_time_ymd'];
       this.timezone = data['timezone'];
       this.timezoneOffset = data['timezone_offset'];
       this.geo = new Geo(data['geo']);
