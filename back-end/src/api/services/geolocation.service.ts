@@ -45,8 +45,13 @@ export default class GeolocationService {
   private static async getGeolocationResponse(ip: string): Promise<ResponseGeolocationAPI> {
     try {
       return await GeolocationApi.getGeolocation(ip);
-    } catch (error) {
-      Logger.error(error);
+    } catch (err) {
+      const error = err as any;
+      const isNotFoundData = error && error.response && error.response.status === 403;
+
+      if (isNotFoundData) throw new ErrorResponse(`${MESSAGES.NOT_FOUND}: ${ip}`, HttpStatusCode.NOT_FOUND);
+
+      Logger.error(err);
       throw new ErrorResponse(MESSAGES.EXTERNAL_ERROR, HttpStatusCode.UNPROCESSABLE);
     }
   }
