@@ -1,7 +1,12 @@
 import React from 'react';
 
-import { ControllableInput, EditableInput } from '..';
+import Alert from '@material-ui/lab/Alert/Alert';
 
+import { ControllableInput, EditableInput, SpinLoading } from '..';
+
+import { MESSAGES } from '../../constants';
+
+import Card from './components/Card';
 import { GeolocationFetch } from './types';
 
 type Props = {
@@ -27,7 +32,23 @@ const IPGeolocationView: React.FC<Props> = (props) => {
         placeholder="Example: 10.255.255.255"
         onClickButton={props.handleGeolocationFetch}
         labelButton="Show"
+        buttonDisabled={!!props.geolocationFetch && props.geolocationFetch.loading}
       />
+
+      <section>
+        <Card geolocation={props.geolocationFetch?.data?.origin} loading={props.geolocationFetch?.loading} footer="Your Location" />
+        <Card geolocation={props.geolocationFetch?.data?.destiny} loading={props.geolocationFetch?.loading} footer="Location Informed" />
+      </section>
+
+      <section>Total Hours Difference = {props.hoursDifference === undefined ? 'XX' : props.hoursDifference} </section>
+
+      {props.geolocationFetch?.loading && <SpinLoading />}
+
+      {props.geolocationFetch?.error && (
+        <Alert severity="warning">
+          {props.geolocationFetch.errorMessage || MESSAGES.REQUEST_API_FAILED}
+        </Alert>
+      )}
     </div>
   );
 };

@@ -22,19 +22,14 @@ export type GeolocationFetch = {
 };
 
 export type GeolocationIPs = {
-  origin: {
-    country: string;
-    city: string;
-    ip: string;
-    localTime: Date;
-    timeZone: string;
-  };
+  origin: Geolocation;
+  destiny: Geolocation;
+};
 
-  destiny: {
-    country: string;
-    city: string;
-    ip: string;
-    localTime: Date;
-    timeZone: string;
-  };
+export type Geolocation = {
+  country: string;
+  city: string;
+  ip: string;
+  localTime: Date;
+  timeZone: string;
 };

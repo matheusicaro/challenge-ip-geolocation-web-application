@@ -9,6 +9,7 @@ type StateProps = {
   onClickButton: (value: string) => void;
   placeholder?: string;
   startValue?: string;
+  buttonDisabled: boolean;
 };
 
 const ControllableInput: React.FC<StateProps> = (props) => {
@@ -35,7 +36,7 @@ const ControllableInput: React.FC<StateProps> = (props) => {
         variant="filled"
       />
 
-      <Button variant="contained" disabled={!value} color="primary" disableElevation onClick={onClickButton}>
+      <Button variant="contained" disabled={!value || props.buttonDisabled} color="primary" disableElevation onClick={onClickButton}>
         {props.labelButton}
       </Button>
     </form>

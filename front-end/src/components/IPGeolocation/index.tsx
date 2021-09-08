@@ -1,15 +1,17 @@
+
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Alert from '@material-ui/lab/Alert';
 import { bindActionCreators, Dispatch } from 'redux';
 
+import { MESSAGES } from '../../constants';
 import API, { GeolocationResponseApi } from '../../services/api';
 import { ApplicationState } from '../../store';
 import { loadRequest, loadSuccess } from '../../store/ducks/clientIP/actions';
 import { State as StateClientIP } from '../../store/ducks/clientIP/types';
 import StringUtils from '../../utils/StringUtils';
 
-import DialogGetIP from './components/DialogGetIP';
 import Loading from './components/Loading';
 import IPGeolocationView from './IPGeolocationView';
 import { StateProps, DispatchProps, State, GeolocationIPs } from './types';
@@ -19,7 +21,7 @@ const IPGeolocation: React.FC<StateProps & DispatchProps> = (props) => {
 
   const isEmptyClientIP = isEmptyStoreClientIP(props.clientIp);
   const isLoading = isEmptyClientIP || props.clientIp.loading;
-  const isAvailableClientIP = !isEmptyClientIP && !isLoading && !props.clientIp.error;
+  const isAvailableClientIP = !isEmptyClientIP && !isLoading;
 
   if (isEmptyClientIP) {
     props.loadRequest();
@@ -27,6 +29,8 @@ const IPGeolocation: React.FC<StateProps & DispatchProps> = (props) => {
 
   const getGeolocationIPs = (destinyIp: string) => {
     if (!state.fetch.loading) {
+      setState((prev) => ({ ...prev, fetch: { ...prev.fetch, loading: true } }));
+
       const onRequestSuccess = (data: GeolocationResponseApi) => setState((prev) => newStateGeolocation(prev, convertToGeolocation(data)));
 
       API.getGeolocationIP(props.clientIp.ip, destinyIp)
@@ -39,7 +43,7 @@ const IPGeolocation: React.FC<StateProps & DispatchProps> = (props) => {
     <main>
       {isLoading && <Loading />}
 
-      <DialogGetIP open={props.clientIp.error} onClickSend={props.loadSuccess} />
+      {props.clientIp.error && <Alert severity="warning">{MESSAGES.DETECT_AUTOMATIC_IP_FAILED}</Alert>}
 
       {isAvailableClientIP && (
         <IPGeolocationView
