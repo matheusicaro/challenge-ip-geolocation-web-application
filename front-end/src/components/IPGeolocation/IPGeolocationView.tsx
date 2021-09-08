@@ -2,9 +2,14 @@ import React from 'react';
 
 import { ControllableInput, EditableInput } from '..';
 
+import { GeolocationFetch } from './types';
+
 type Props = {
+  handleGeolocationFetch: (destinyIp: string) => void;
   handleEditClientIP: (value: string) => void;
   clientIP: string;
+  geolocationFetch?: GeolocationFetch;
+  hoursDifference?: number;
 };
 
 const IPGeolocationView: React.FC<Props> = (props) => {
@@ -20,7 +25,7 @@ const IPGeolocationView: React.FC<Props> = (props) => {
       <ControllableInput
         label="Enter the IP Address of destiny"
         placeholder="Example: 10.255.255.255"
-        onClickButton={props.handleEditClientIP}
+        onClickButton={props.handleGeolocationFetch}
         labelButton="Show"
       />
     </div>
