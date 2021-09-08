@@ -1,11 +1,11 @@
 // @ts-nocheck
 
 import { mockRequest, mockResponse } from './util';
-import controller from '../../api/controllers/health.controller';
-import { Health } from '../../api/models';
+import controller from '../../../api/controllers/health.controller';
+import { Health } from '../../../api/models';
 
-jest.mock('../../config/logger');
-import { Logger } from '../../config/logger';
+jest.mock('../../../config/logger');
+import { Logger } from '../../../config/logger';
 
 describe("Check method 'getHealth'", () => {
   beforeEach(() => {
