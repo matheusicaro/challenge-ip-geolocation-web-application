@@ -27,16 +27,15 @@ const EditableInput: React.FC<StateProps> = (props) => {
   };
 
   return (
-    <form noValidate autoComplete="off">
+    <form className='input-container' noValidate autoComplete="off">
       <TextField
-        id="filled-multiline-flexible"
         label={props.label}
         placeholder={props.placeholder}
         multiline
         rowsMax={4}
         value={value}
         onChange={handleChange}
-        variant="filled"
+        variant="outlined"
       />
 
       {editButtonEnable && (

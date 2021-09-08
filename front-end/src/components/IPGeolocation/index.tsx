@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -14,9 +13,15 @@ import StringUtils from '../../utils/StringUtils';
 
 import Loading from './components/Loading';
 import IPGeolocationView from './IPGeolocationView';
+import { Container } from './styles';
 import { StateProps, DispatchProps, State, GeolocationIPs } from './types';
 
-const IPGeolocation: React.FC<StateProps & DispatchProps> = (props) => {
+type OwnProps = {
+  className?: string;
+  children?: never;
+};
+
+const IPGeolocation: React.FC<StateProps & DispatchProps & OwnProps> = (props) => {
   const [state, setState] = React.useState<State>(initialState());
 
   const isEmptyClientIP = isEmptyStoreClientIP(props.clientIp);
@@ -40,8 +45,8 @@ const IPGeolocation: React.FC<StateProps & DispatchProps> = (props) => {
   };
 
   return (
-    <main>
-      {isLoading && <Loading />}
+    <Container className={props.className}>
+      {true && <Loading />}
 
       {props.clientIp.error && <Alert severity="warning">{MESSAGES.DETECT_AUTOMATIC_IP_FAILED}</Alert>}
 
@@ -54,7 +59,7 @@ const IPGeolocation: React.FC<StateProps & DispatchProps> = (props) => {
           hoursDifference={state.geolocationHoursDifference}
         />
       )}
-    </main>
+    </Container>
   );
 };
 

@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { Paper, Typography } from '@material-ui/core';
+import styled from 'styled-components';
+
 import { Geolocation } from '../types';
 
 type Props = {
@@ -17,25 +20,49 @@ const Card: React.FC<Props> = ({ geolocation, loading, footer }) => {
 
   const localTime = `${hours}:${minutes}:${seconds}`;
 
+  const country = geolocation?.country;
+  const city = geolocation?.city;
+  const timeZone = geolocation?.timeZone;
+
   return (
-    <article>
-      <section>
-        <span>
-          Contry: <span>{geolocation?.country || 'XXXX'}</span>
-        </span>
-        <span>
-          City: <span>{geolocation?.city || 'XXXX'}</span>
-        </span>
-        <span>
-          TimeZone: <span>{geolocation?.timeZone || 'XXXX'}</span>
-        </span>
-        <span>
-          Local Time: <span>{localTime}</span>
-        </span>
-      </section>
-      <h4>{footer}</h4>
-    </article>
+    <Container>
+      <Paper className="paper-container" elevation={2} component="section">
+        <Typography variant="body1" component="span">
+          Contry: <Data validData={!!country}>{country || 'XXXX'}</Data>
+        </Typography>
+        <Typography variant="body1" component="span">
+          City: <Data validData={!!city}>{city || 'XXXX'}</Data>
+        </Typography>
+        <Typography variant="body1" component="span">
+          TimeZone: <Data validData={!!timeZone}>{timeZone || 'XXXX'}</Data>
+        </Typography>
+        <Typography variant="body1" component="span">
+          Local Time: <Data validData={!!geolocation}>{localTime}</Data>
+        </Typography>
+      </Paper>
+      <Typography variant="h6" component="h3">
+        {footer}
+      </Typography>
+    </Container>
   );
 };
 
 export default Card;
+
+const Container = styled.article`
+  text-align: center;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    width: max-content;
+    width: 90%;
+  }
+`;
+const Data = styled.span<{ validData: boolean }>`
+  text-align: center;
+
+  opacity: ${(props) => (props.validData ? '1' : '0.4')};
+  font-weight: ${(props) => (props.validData ? 'bold' : 'normal')};
+`;

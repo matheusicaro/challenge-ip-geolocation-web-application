@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
+import { Paper, Typography } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert/Alert';
 
 import { ControllableInput, EditableInput, SpinLoading } from '..';
+
+import styled from 'styled-components';
 
 import { MESSAGES } from '../../constants';
 
@@ -19,7 +22,7 @@ type Props = {
 
 const IPGeolocationView: React.FC<Props> = (props) => {
   return (
-    <div>
+    <Fragment>
       <EditableInput
         label="My IP Address"
         placeholder="Example: 10.255.255.255"
@@ -35,22 +38,32 @@ const IPGeolocationView: React.FC<Props> = (props) => {
         buttonDisabled={!!props.geolocationFetch && props.geolocationFetch.loading}
       />
 
-      <section>
+      <CardsContainer>
         <Card geolocation={props.geolocationFetch?.data?.origin} loading={props.geolocationFetch?.loading} footer="Your Location" />
         <Card geolocation={props.geolocationFetch?.data?.destiny} loading={props.geolocationFetch?.loading} footer="Location Informed" />
+      </CardsContainer>
+
+      <Paper id="hours-difference" className="paper-container" elevation={2} component="section">
+        <Typography variant="body1" component="span">
+          Total Hours Difference = {props.hoursDifference === undefined ? 'XX' : props.hoursDifference}{' '}
+        </Typography>
+      </Paper>
+
+      <section id="info-container">
+        {props.geolocationFetch?.loading && <SpinLoading />}
+
+        {props.geolocationFetch?.error && (
+          <Alert severity="warning">{props.geolocationFetch.errorMessage || MESSAGES.REQUEST_API_FAILED}</Alert>
+        )}
       </section>
-
-      <section>Total Hours Difference = {props.hoursDifference === undefined ? 'XX' : props.hoursDifference} </section>
-
-      {props.geolocationFetch?.loading && <SpinLoading />}
-
-      {props.geolocationFetch?.error && (
-        <Alert severity="warning">
-          {props.geolocationFetch.errorMessage || MESSAGES.REQUEST_API_FAILED}
-        </Alert>
-      )}
-    </div>
+    </Fragment>
   );
 };
 
 export default IPGeolocationView;
+
+const CardsContainer = styled.section`
+  display: grid;
+  grid-template-columns: 45% 45%;
+  justify-content: space-between;
+`;
