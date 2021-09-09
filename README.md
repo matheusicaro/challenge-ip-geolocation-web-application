@@ -13,7 +13,11 @@
 ## Intro:
 
 Coderbyte challenge to develop a web application that can search for IP geolocation. <br>
-It was suggested to use stack with backend in Node.js and and Frontend in React.js.
+It was suggested to use stack with Back-end in Node.js and and Front-end in React.js.
+- [BACK-END](https://github.com/matheusicaro/coderbyte-full-stack-project/tree/master/back-end)
+- [FRONT-END](https://github.com/matheusicaro/coderbyte-full-stack-project/tree/master/front-end)
+
+<br>
 
 ## Project Screen Shot
 
