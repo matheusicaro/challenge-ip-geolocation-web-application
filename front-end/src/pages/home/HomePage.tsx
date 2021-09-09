@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import IPGeolocation from '../../components/IPGeolocation';
-import Banner from '../Banner';
-import Footer from '../Footer';
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
 
 const Home: React.FC = (props) => {
   return (

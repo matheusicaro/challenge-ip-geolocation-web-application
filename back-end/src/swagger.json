@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a sample server for initiating a Rest API using Node.js with Express and Typescript.",
+    "description": "Rest API for Coderbyte's full stack project challenge.",
     "version": "1.0.0",
-    "title": "typescript-starter",
+    "title": "coderbyte-full-stack-project-back-end",
     "termsOfService": "https://petstore.swagger.io/",
     "contact": { "email": "contact@matheusicaro.com" },
     "license": { "name": "Apache 2.0", "url": "http://www.apache.org/licenses/LICENSE-2.0.html" }
@@ -14,7 +14,7 @@
   "schemes": ["https", "http"],
 
   "paths": {
-    "/helth": {
+    "/health": {
       "get": {
         "tags": ["helth"],
         "summary": "check the Api status",
