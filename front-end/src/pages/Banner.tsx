@@ -4,6 +4,10 @@ import styled from 'styled-components';
 
 import LogoBackground from '../assets/images/logo_background.png';
 
+/**
+ * Banner component with introduction and general application information
+ *
+ */
 const Banner: React.FC = () => {
   return (
     <Container>

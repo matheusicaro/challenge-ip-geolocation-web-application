@@ -8,6 +8,10 @@ const INITIAL_STATE: State = {
   error: false,
 };
 
+/**
+ * Reducer to control changes in the status of obtaining the ip client
+ *
+ */
 const ClientIPReducer: Reducer<State, Action> = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case Types.LOAD_REQUEST:

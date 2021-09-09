@@ -21,6 +21,10 @@ type OwnProps = {
   children?: never;
 };
 
+/**
+ * Business rules component for ips geolocation visualization feature
+ *
+ */
 const IPGeolocation: React.FC<StateProps & DispatchProps & OwnProps> = (props) => {
   const [state, setState] = React.useState<State>(initialState());
 
@@ -63,6 +67,15 @@ const IPGeolocation: React.FC<StateProps & DispatchProps & OwnProps> = (props) =
   );
 };
 
+const initialState = (): State => {
+  return {
+    fetch: {
+      error: false,
+      loading: false,
+    },
+  };
+};
+
 const isEmptyStoreClientIP = (store: StateClientIP) => {
   return StringUtils.isNullOrEmpty(store.ip) && !store.loading && !store.error;
 };
@@ -75,15 +88,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ loadRequ
 
 export default connect(mapStateToProps, mapDispatchToProps)(IPGeolocation);
 
-const initialState = (): State => {
-  return {
-    fetch: {
-      error: false,
-      loading: false,
-    },
-  };
-};
-
+/**
+ * Function for new component state with geolocation data.
+ *
+ * @param  {State} previosState: component's previous state
+ * @param  {GeolocationIPs} geolocation: object with geolocation information for new component state
+ *
+ * @return  {State} state: new component state
+ */
 const newStateGeolocation = (previosState: State, geolocation: GeolocationIPs): State => {
   const hoursDifference = Math.abs(geolocation.origin.localTime.getHours() - geolocation.destiny.localTime.getHours());
 
@@ -94,6 +106,14 @@ const newStateGeolocation = (previosState: State, geolocation: GeolocationIPs): 
   };
 };
 
+/**
+ * Function to convert backend return object to object to be used at runtime.
+ *
+ * @param  {GeolocationResponseApi} data: request response object in external api
+ *
+ * @return  {GeolocationIPs} geolocation: object for runtime use
+ *
+ */
 const convertToGeolocation = (data: GeolocationResponseApi): GeolocationIPs => {
   return {
     origin: {
@@ -107,6 +127,14 @@ const convertToGeolocation = (data: GeolocationResponseApi): GeolocationIPs => {
   };
 };
 
+/**
+ * Function for utc date conversion without considering client browser GMT.
+ *
+ * @param  {string} date: date time as string - 2021-07-09T10:07:00Z
+ *
+ * @return  {Date} date object for runtime use
+ *
+ */
 const converterStrintToDate = (date: string) => {
   const dateAndTime = date.split('T');
   const dateSplited = dateAndTime[0]?.split('-');

@@ -10,6 +10,10 @@ type Props = {
   footer: string;
 };
 
+/**
+ * Component for visualization of geolocation data
+ *
+ */
 const Card: React.FC<Props> = ({ geolocation, footer }) => {
   const format = (number: number) => (number < 10 ? `0${number}` : number);
 

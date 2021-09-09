@@ -13,6 +13,10 @@ type StateProps = {
   startValue?: string;
 };
 
+/**
+ * Generic component for inputs with editable fields to be used in the application.
+ *
+ */
 const EditableInput: React.FC<StateProps> = (props) => {
   const [value, setValue] = React.useState(props.startValue);
   const [editModeEnabled, setEditModeEnabled] = React.useState(true);
@@ -34,7 +38,6 @@ const EditableInput: React.FC<StateProps> = (props) => {
         label={props.label}
         placeholder={props.placeholder}
         multiline
-        rowsMax={4}
         value={value}
         onChange={handleChange}
         variant="outlined"

@@ -20,6 +20,10 @@ type Props = {
   hoursDifference?: number;
 };
 
+/**
+ * Visualization and styling component
+ *
+ */
 const IPGeolocationView: React.FC<Props> = (props) => {
   return (
     <Fragment>

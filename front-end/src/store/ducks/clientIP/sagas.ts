@@ -4,6 +4,11 @@ import StringUtils from '../../../utils/StringUtils';
 
 import { loadSuccess, loadFailure } from './actions';
 
+/**
+ * Function designed to get the client's ip and return action to the store
+ *
+ *  @return  {Action} store action
+ */
 export function* loadClientIp() {
   try {
     const clientIp = yield getClientIp();

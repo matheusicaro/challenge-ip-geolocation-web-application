@@ -12,6 +12,10 @@ type StateProps = {
   buttonDisabled: boolean;
 };
 
+/**
+ * Controllable generic component to be used in the application.
+ *
+ */
 const ControllableInput: React.FC<StateProps> = (props) => {
   const [value, setValue] = React.useState(props.startValue);
 
@@ -29,7 +33,6 @@ const ControllableInput: React.FC<StateProps> = (props) => {
         label={props.label}
         placeholder={props.placeholder}
         multiline
-        rowsMax={4}
         value={value}
         onChange={handleChange}
         variant="outlined"
