@@ -7,11 +7,10 @@ import { Geolocation } from '../types';
 
 type Props = {
   geolocation?: Geolocation;
-  loading?: boolean;
   footer: string;
 };
 
-const Card: React.FC<Props> = ({ geolocation, loading, footer }) => {
+const Card: React.FC<Props> = ({ geolocation, footer }) => {
   const format = (number: number) => (number < 10 ? `0${number}` : number);
 
   const hours = geolocation ? format(geolocation.localTime.getHours()) : '00';

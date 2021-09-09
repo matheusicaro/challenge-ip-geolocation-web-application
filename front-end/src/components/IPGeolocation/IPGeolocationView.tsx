@@ -28,6 +28,7 @@ const IPGeolocationView: React.FC<Props> = (props) => {
         placeholder="Example: 10.255.255.255"
         onClickSaveNewValue={props.handleEditClientIP}
         startValue={props.clientIP}
+        autoFocus={true}
       />
 
       <ControllableInput
@@ -39,8 +40,8 @@ const IPGeolocationView: React.FC<Props> = (props) => {
       />
 
       <CardsContainer>
-        <Card geolocation={props.geolocationFetch?.data?.origin} loading={props.geolocationFetch?.loading} footer="Your Location" />
-        <Card geolocation={props.geolocationFetch?.data?.destiny} loading={props.geolocationFetch?.loading} footer="Location Informed" />
+        <Card geolocation={props.geolocationFetch?.data?.origin} footer="Your Location" />
+        <Card geolocation={props.geolocationFetch?.data?.destiny} footer="Location Informed" />
       </CardsContainer>
 
       <Paper id="hours-difference" className="paper-container" elevation={2} component="section">
@@ -52,7 +53,7 @@ const IPGeolocationView: React.FC<Props> = (props) => {
       <section id="info-container">
         {props.geolocationFetch?.loading && <SpinLoading />}
 
-        {props.geolocationFetch?.error && (
+        {props.geolocationFetch?.error && !props.geolocationFetch?.loading && (
           <Alert severity="warning">{props.geolocationFetch.errorMessage || MESSAGES.REQUEST_API_FAILED}</Alert>
         )}
       </section>

@@ -8,7 +8,7 @@ export const Container = styled.section`
   justify-content: space-between;
 
   display: grid;
-  max-width: 600px;
+  max-width: 900px;
   grid-template-columns: 100%;
   grid-row-gap: 30px;
 
@@ -35,7 +35,6 @@ export const Container = styled.section`
   }
 
   #info-container {
-    margin-top: 5%;
     place-self: center;
   }
 `;

@@ -46,7 +46,7 @@ const IPGeolocation: React.FC<StateProps & DispatchProps & OwnProps> = (props) =
 
   return (
     <Container className={props.className}>
-      {true && <Loading />}
+      {isLoading && <Loading />}
 
       {props.clientIp.error && <Alert severity="warning">{MESSAGES.DETECT_AUTOMATIC_IP_FAILED}</Alert>}
 
@@ -63,38 +63,6 @@ const IPGeolocation: React.FC<StateProps & DispatchProps & OwnProps> = (props) =
   );
 };
 
-const initialState = (): State => {
-  return {
-    fetch: {
-      error: false,
-      loading: false,
-    },
-  };
-};
-
-const newStateGeolocation = (previosState: State, geolocation: GeolocationIPs): State => {
-  const hoursDifference = geolocation.origin.localTime.getHours() - geolocation.destiny.localTime.getHours();
-
-  return {
-    ...previosState,
-    fetch: { loading: false, error: false, data: geolocation },
-    geolocationHoursDifference: hoursDifference,
-  };
-};
-
-const convertToGeolocation = (data: GeolocationResponseApi): GeolocationIPs => {
-  return {
-    origin: {
-      ...data.destiny,
-      localTime: new Date(data.origin.localTime),
-    },
-    destiny: {
-      ...data.destiny,
-      localTime: new Date(data.destiny.localTime),
-    },
-  };
-};
-
 const isEmptyStoreClientIP = (store: StateClientIP) => {
   return StringUtils.isNullOrEmpty(store.ip) && !store.loading && !store.error;
 };
@@ -106,3 +74,51 @@ const mapStateToProps = (state: ApplicationState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ loadRequest, loadSuccess }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(IPGeolocation);
+
+const initialState = (): State => {
+  return {
+    fetch: {
+      error: false,
+      loading: false,
+    },
+  };
+};
+
+const newStateGeolocation = (previosState: State, geolocation: GeolocationIPs): State => {
+  const hoursDifference = Math.abs(geolocation.origin.localTime.getHours() - geolocation.destiny.localTime.getHours());
+
+  return {
+    ...previosState,
+    fetch: { loading: false, error: false, data: geolocation },
+    geolocationHoursDifference: hoursDifference,
+  };
+};
+
+const convertToGeolocation = (data: GeolocationResponseApi): GeolocationIPs => {
+  return {
+    origin: {
+      ...data.origin,
+      localTime: converterStrintToDate(data.origin.localTime),
+    },
+    destiny: {
+      ...data.destiny,
+      localTime: converterStrintToDate(data.destiny.localTime),
+    },
+  };
+};
+
+const converterStrintToDate = (date: string) => {
+  const dateAndTime = date.split('T');
+  const dateSplited = dateAndTime[0]?.split('-');
+  const timeSplited = dateAndTime[1]?.split('-')[0]?.split(':');
+
+  const year = parseInt(dateSplited[0]) || 0;
+  const month = parseInt(dateSplited[1]) || 0;
+  const day = parseInt(dateSplited[2]) || 0;
+
+  const hour = parseInt(timeSplited[0]) || 0;
+  const minutes = parseInt(timeSplited[1]) || 0;
+  const seconds = parseInt(timeSplited[2]) || 0;
+
+  return new Date(year, month, day, hour, minutes, seconds);
+};
