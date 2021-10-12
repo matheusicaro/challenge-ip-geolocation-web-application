@@ -1,0 +1,38 @@
+{
+  "profile": {
+    "pt": {
+      "kind": "Open Source",
+      "name": "Seu sistema de geolocalização de IP na web",
+      "intro": "Desafio do Coderbyte para desenvolver um aplicativo da web que possa pesquisar geolocalização de IP, onde foi sugerido o uso de pilha com back-end em Node.js e front-end em React.js"
+    },
+    "fr": {
+      "kind": "Open Source",
+      "name": "Votre système Web de géolocalisation IP",
+      "intro": "Défi Coderbyte pour développer une application Web qui peut rechercher la géolocalisation IP, où il a été suggéré d'utiliser la pile avec Back-end dans Node.js et et Front-end dans React.js"
+    },
+    "en": {
+      "kind": "Open Source",
+      "name": "Your IP geolocation Web system",
+      "intro": "Coderbyte challenge to develop a web application that can search for IP geolocation, where was suggested to use stack with Back-end in Node.js and and Front-end in React.js"
+    },
+    "es": {
+      "kind": "Open Source",
+      "name": "Su sistema web de geolocalización IP",
+      "intro": "Desafío de Coderbyte para desarrollar una aplicación web que pueda buscar la geolocalización de IP, donde se sugirió usar stack con Back-end en Node.js y Front-end en React.js"
+    }
+  },
+  "stack": {
+    "frontend": [
+      {
+        "name": "React",
+        "tags": ["Redux", "Material-ui", "TypeScript", "Redux-saga", "Styled-components"]
+      }
+    ],
+    "backend": [
+      {
+        "name": "Node.js",
+        "tags": ["JavaScript", "TypeScript", "Swagger-ui", "Express", "Jest", "Husky", "eslint"]
+      }
+    ]
+  }
+}
