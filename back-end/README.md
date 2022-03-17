@@ -54,9 +54,11 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 
 ## Project Specifications
 
-- Used [Node.js](https://nodejs.org/en/) with [express](https://expressjs.com/) and with [TypeScript](https://www.typescriptlang.org/)
-- Used [Jest](https://jestjs.io/) for unit testing
-- Used [Husky](https://typicode.github.io/husky/#/) for analyzing lint tests and configurations before committing to the repository
+- Used **[Node.js](https://nodejs.org/en/)** with:
+    - **[TypeScript](https://www.typescriptlang.org/)**
+    - **[express](https://expressjs.com/)**
+- Used **[Jest](https://jestjs.io/)** for unit testing
+- Used **[Husky](https://typicode.github.io/husky/#/)** for analyzing lint tests and configurations before committing to the repository
 
 ## To Do List:  
 

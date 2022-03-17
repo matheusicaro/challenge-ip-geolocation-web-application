@@ -49,11 +49,11 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 
 ## Project Specifications
 
-- Used [React and Typescript](https://www.typescriptlang.org/pt/docs/handbook/react.html)
-- Used [Material-UI](https://material-ui.com/) and [Styled Components](https://styled-components.com/) lib for styling 
-- Used [Redux-Saga](https://redux-saga.js.org/) for store management along with the [Ducks pattern](https://github.com/erikras/ducks-modular-redux)
-- Used [Reack Hooks](https://reactjs.org/docs/hooks-intro.html) with stateful and stateless components.
-- Used [Husky](https://typicode.github.io/husky/#/) for analyzing lint tests and configurations before committing to the repository
+- Used **[React and Typescript](https://www.typescriptlang.org/pt/docs/handbook/react.html)**
+- Used **[Material-UI](https://material-ui.com/)** and **[Styled Components](https://styled-components.com/)** lib for styling 
+- Used **[Redux-Saga](https://redux-saga.js.org/)** for store management along with the **[Ducks pattern](https://github.com/erikras/ducks-modular-redux)**
+- Used **[Reack Hooks](https://reactjs.org/docs/hooks-intro.html)** with stateful and stateless components.
+- Used **[Husky](https://typicode.github.io/husky/#/)** for analyzing lint tests and configurations before committing to the repository
 
 
 ## To Do List:  

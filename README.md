@@ -1,13 +1,15 @@
-## CODERBYTE'S FULL STACK PROJECT CHALLENGE.
+## WEB APPLICATION FOR IP GEOLOCATION - CHALLENGE FROM CODERBYTE
 [![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/coderbyte-full-stack-project/blob/master/LICENSE)
 
 ## Summary:
 
-1. [Intro](#intro)
-2. [Project Screen Shot](#project-screen-shot)
-3. [Challenge Scope](#challenge-scope)
-4. [Applied Solution](#applied-solution)
-5. [Installation and Setup Instructions](#installation-and-setup-instructions))
+- [Intro](#intro)
+- [Challenge](#challenge)
+- **[Project Screen Shot](#project-screen-shot)**
+- [Applied Solution](#applied-solution)
+- [Installation and Setup Instructions](#installation-and-setup-instructions)
+- [Technologies used](#project-specifications-stack)
+
 
 
 ## Intro:
@@ -19,13 +21,13 @@ It was suggested to use stack with Back-end in Node.js and and Front-end in Reac
 
 <br>
 
+## Challenge
+
+![web-app](https://github.com/matheusicaro/coderbyte-full-stack-project/blob/master/data/scope-challenge.PNG)
+
 ## Project Screen Shot
 
 ![web-app](https://github.com/matheusicaro/coderbyte-full-stack-project/blob/master/data/web-app.gif)
-
-## Challenge Scope
-
-![web-app](https://github.com/matheusicaro/coderbyte-full-stack-project/blob/master/data/scope-challenge.PNG)
 
 ## Applied Solution
 
@@ -40,3 +42,21 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 3. Run the **front-end** following [these steps](https://github.com/matheusicaro/coderbyte-full-stack-project/tree/master/front-end#installation-and-setup-instructions)
 4. have fun!
 
+## Project Specifications (stack)
+
+#### FRONT-END
+
+- Used **[React and Typescript](https://www.typescriptlang.org/pt/docs/handbook/react.html)**
+- Used **[Material-UI](https://material-ui.com/)** and **[Styled Components](https://styled-components.com/)** lib for styling 
+- Used **[Redux-Saga](https://redux-saga.js.org/)** for store management along with the **[Ducks pattern](https://github.com/erikras/ducks-modular-redux)**
+- Used **[React Hooks](https://reactjs.org/docs/hooks-intro.html)** with stateful and stateless components.
+- Used **[Husky](https://typicode.github.io/husky/#/)** for analyzing lint tests and configurations before committing to the repository
+
+
+#### BACK-END
+
+- Used **[Node.js](https://nodejs.org/en/)** with:
+    - **[TypeScript](https://www.typescriptlang.org/)**
+    - **[express](https://expressjs.com/)**
+- Used **[Jest](https://jestjs.io/)** for unit testing
+- Used **[Husky](https://typicode.github.io/husky/#/)** for analyzing lint tests and configurations before committing to the repository
