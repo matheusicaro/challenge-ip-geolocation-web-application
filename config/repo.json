@@ -21,7 +21,7 @@
       "intro": "Desafío de Coderbyte para desarrollar una aplicación web que pueda buscar la geolocalización de IP, donde se sugirió usar stack con Back-end en Node.js y Front-end en React.js"
     }
   },
-  "tags": ["Node.js", "React", "TypeScript", "Express", "Redux", "Material-ui", "Redux-saga", "Styled-components", "Full-stack", "Front-end", "Back-end"],
+  "tags": ["Node.js", "React", "TypeScript", "Express", "Redux", "Material-ui", "Redux-saga", "Styled-components", "JavaScript", "Full-stack", "Front-end", "Back-end"],
   "stack": {
     "frontend": [
       {
