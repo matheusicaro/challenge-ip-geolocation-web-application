@@ -26,7 +26,7 @@
     "frontend": [
       {
         "name": "React",
-        "tags": ["Redux", "Material-UI", "TypeScript", "Redux-saga", "Styled-components"]
+        "tags": ["Redux", "Material-UI", "TypeScript", "Redux-saga", "Styled-Components"]
       }
     ],
     "backend": [
